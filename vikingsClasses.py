@@ -68,22 +68,26 @@ class War():
         self.saxonArmy.append(saxon)
     
     def vikingAttack(self):
-        if self.saxonArmy:
-            saxon = random.choice(self.saxonArmy)
-            viking = random.choice(self.vikingArmy)
-            result = saxon.receiveDamage(viking.strength)
-            if saxon.health <= 0:
-                self.saxonArmy.remove(saxon)
-            return result
-    
+        return self.armyAttack(self.vikingArmy, self.saxonArmy)
+
     def saxonAttack(self):
-        if self.vikingArmy:
-            viking = random.choice(self.vikingArmy)
-            saxon = random.choice(self.saxonArmy)
-            result = viking.receiveDamage(saxon.strength)
-            if viking.health <=0:
-                self.vikingArmy.remove(viking)
-            return result
+        return self.armyAttack(self.saxonArmy, self.vikingArmy)
+
+    def armyAttack(self, attacking_army, defending_army):
+        """
+        implements a generic attack 
+        (a random soldier from the attacking army attacks a random soldier from the defending army)
+        """
+        attacker = random.choice(attacking_army)
+        defender = random.choice(defending_army)
+
+        strength = attacker.attack()
+        result = defender.receiveDamage(strength)
+
+        if defender.health <= 0:
+            defending_army.remove(defender)
+
+        return result
 
     def showStatus(self):
         if not self.saxonArmy:
