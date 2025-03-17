@@ -2,40 +2,31 @@ import random
 import time
 import os
 
+from ui import UI
 from vikingsClasses import Viking, Saxon, War, Event, HealthBoostEvent
 
 
 def choose_warrior(army, player_name):
-    while True:
-        try:
-            print(f"\n{player_name}, it's time to choose your warrior!")
-            print("Here are your available warriors:")
-            for i, warrior in enumerate(army):
-                print(f"{i}: {type(warrior).__name__} with {warrior.health} health and {warrior.strength} strength")
-            # Ask te user to enter warriors name. Maybe here is worth to implement selection with arrows as done in previos project
-            choice = int(input(f"{player_name}, enter the number of the warrior you choose: "))
-            if 0 <= choice < len(army):
-                return army[choice]
-            else:
-                print("Invalid choice. The number must match a warrior in the list. Try again.")
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
+    """"Allow the player to select a warrior from their army"""
+    message = f"\n{player_name}, it's time for you to choose a warrior!"
+    options = [f"{type(warrior).__name__}: {warrior.name if warrior.name else ''} with {warrior.health} health and {warrior.strength} strength" for warrior in army]
+    selected_index = UI.display_user_menu(options, message)
+    return army[selected_index]
 
-
-def clear_screen():
-    # Clear the command window based on the operating system
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def main():
+
+    soldier_number = UI.ask_for_int("Enter the number of soldiers: ")
+
     player1 = input("Player 1, write your name (Vikings' leader): ")
     player2 = input("Player 2, (Saxons' leader): ")
 
     great_war = War()
 
-    for i in range(1):
-        great_war.addViking(Viking(f"Viking-{i+1}", 100, random.randint(50, 100)))
-        great_war.addSaxon(Saxon(f"Saxon-{i+1}", 100, random.randint(50, 100)))
+    for i in range(1, soldier_number + 1):
+        great_war.addViking(Viking(f"Viking-{i}", 100, random.randint(50, 100)))
+        great_war.addSaxon(Saxon(f"Saxon-{i}", 100, random.randint(50, 100)))
 
     round = 1
     while great_war.showStatus() == "Vikings and Saxons are still in the thick of battle.":
@@ -53,36 +44,38 @@ def main():
 
         # Player 1 turn (Vikings)
         print(f"\n{player1}'s turn")
+        time.sleep(1)
         viking = choose_warrior(great_war.vikingArmy, player1)
         saxon = choose_warrior(great_war.saxonArmy, player2)
         attack_damage = viking.attack()
-        print(attack_damage)
         print(saxon.receiveDamage(attack_damage))
+        time.sleep(1)
         if saxon.health <= 0:
             great_war.saxonArmy.remove(saxon)
 
         # Check if Saxons are dead
         if not great_war.saxonArmy:
-            print(f"{player1} and the Vikings army win the war!")
+            UI.display_message(f"{player1} and the Vikings army win the war!")
             break
 
         # Player 2 turn (Saxons)
         print(f"\n{player2}'s turn")
+        time.sleep(1)
         saxon = choose_warrior(great_war.saxonArmy, player2)
         viking = choose_warrior(great_war.vikingArmy, player1)
         attack_damage = saxon.attack()
-        print(attack_damage)
         print(viking.receiveDamage(attack_damage))
+        time.sleep(1)
         if viking.health <= 0:
             great_war.vikingArmy.remove(viking)
 
         # Check if Vikings are dead
         if not great_war.vikingArmy:
-            print(f"{player2} and the Saxon army win the war!")
+            UI.display_message(f"{player2} and the Saxon army win the war!")
             break
 
         round += 1
-        clear_screen()
+        UI.clear()
 
 
 if __name__ == "__main__":

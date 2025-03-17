@@ -1,4 +1,5 @@
 import random
+import time
 import threading
 
 
@@ -143,10 +144,13 @@ class HealthBoostEvent(Event):
             chosen_viking = random.choice(self.vikingArmy)
             chosen_viking.health += 10
             print(f"{self.player1} wins the event! {chosen_viking.name} gains 10 health!")
+            time.sleep(2)
         elif pressed_key == "m" and self.saxonArmy:
             chosen_saxon = random.choice(self.saxonArmy)
             chosen_saxon.health += 10
             print(f"{self.player2} wins the event! {chosen_saxon.name} gains 10 health!")
+            time.sleep(2)
         else:
             print("Invalid key pressed or no warriors available!")
+            time.sleep(1)
 
