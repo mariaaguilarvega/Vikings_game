@@ -1,10 +1,9 @@
-# With a correction already implemented: dont forget to initialize an instance of Class "War"
-
-from vikingsClasses import Soldier, Viking, Saxon, War, Event, HealthBoostEvent
 import random
-import threading
 import time
 import os
+
+from vikingsClasses import Viking, Saxon, War, Event, HealthBoostEvent
+
 
 def choose_warrior(army, player_name):
     while True:
@@ -22,13 +21,15 @@ def choose_warrior(army, player_name):
         except ValueError:
             print("Invalid input. Please enter a valid number.")
 
+
 def clear_screen():
     # Clear the command window based on the operating system
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
 def main():
-    player1 = input("Player 1, write your name (Vikingos' leader): ")
-    player2 = input("Player 2, (Saxons leader): ")
+    player1 = input("Player 1, write your name (Vikings' leader): ")
+    player2 = input("Player 2, (Saxons' leader): ")
 
     great_war = War()
 
@@ -38,7 +39,7 @@ def main():
 
     round = 1
     while great_war.showStatus() == "Vikings and Saxons are still in the thick of battle.":
-        print(f"\n--- Ronda {round} ---")
+        print(f"\n--- Round {round} ---")
         time.sleep(1)
         print("\nActual state of both armies:")
         print(f"{player1}: {len(great_war.vikingArmy)} Vikings alive")
@@ -83,5 +84,7 @@ def main():
         round += 1
         clear_screen()
 
+
 if __name__ == "__main__":
     main()
+

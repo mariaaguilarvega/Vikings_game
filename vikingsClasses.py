@@ -2,64 +2,61 @@ import random
 import threading
 
 
-
-
+#
+# Soldier
+#
 class Soldier():
     def __init__(self, health, strength):
-        # your code here
         self.health = health
         self.strength = strength
     
     def attack(self):
-        # your code here
         return self.strength
 
     def receiveDamage(self, damage):
-        # your code here
         self.health -= damage
     
 
+#
 # Viking
-
+#
 class Viking(Soldier):
     def __init__(self, name, health, strength):
-        # your code here
         super().__init__(health, strength)
         self.name = name
 
     def battleCry(self):
-        # your code here
         return f"Odin Owns You All!"
 
     def receiveDamage(self, damage):
-        # your code here
         self.health -= damage
         if self.health > 0:
             return f"{self.name} has received {damage} points of damage"
         else:
             return f"{self.name} has died in act of combat"
 
-# Saxon
 
+#
+# Saxon
+#
 class Saxon(Soldier):
     def __init__(self, name, health, strength):
         super().__init__(health, strength)
         self.name = name
 
     def receiveDamage(self, damage):
-        # your code here
         self.health -= damage
         if self.health > 0:
             return f"A Saxon has received {damage} points of damage"
         else:
             return f"A Saxon has died in combat"
 
-# WAAAAAAAAAGH
 
+#
+# War
+#
 class War():
-
     def __init__(self):
-        # your code here
         self.vikingArmy = []
         self.saxonArmy = []
 
@@ -71,11 +68,10 @@ class War():
         self.saxonArmy.append(saxon)
     
     def vikingAttack(self):
-        # your code here
         if self.saxonArmy:
             saxon = random.choice(self.saxonArmy)
             viking = random.choice(self.vikingArmy)
-            result = saxon.receiveDamage(viking.strength)      #or attack?
+            result = saxon.receiveDamage(viking.strength)
             if saxon.health <= 0:
                 self.saxonArmy.remove(saxon)
             return result
@@ -84,13 +80,12 @@ class War():
         if self.vikingArmy:
             viking = random.choice(self.vikingArmy)
             saxon = random.choice(self.saxonArmy)
-            result = viking.receiveDamage(saxon.strength)     #or attack?
+            result = viking.receiveDamage(saxon.strength)
             if viking.health <=0:
                 self.vikingArmy.remove(viking)
             return result
 
     def showStatus(self):
-        # your code here
         if not self.saxonArmy:
             return "Vikings have won the war of the century!"
         elif not self.vikingArmy:
@@ -98,13 +93,18 @@ class War():
         else:
             return "Vikings and Saxons are still in the thick of battle."
 
-    pass
 
-
+#
+# Event
+#
 class Event:
     def trigger(self):
         pass
 
+
+#
+# HealthBoostEvent
+#
 class HealthBoostEvent(Event):
     def __init__(self, player1, player2, vikingArmy, saxonArmy):
         self.player1 = player1
@@ -145,3 +145,4 @@ class HealthBoostEvent(Event):
             print(f"{self.player2} wins the event! {chosen_saxon.name} gains 10 health!")
         else:
             print("Invalid key pressed or no warriors available!")
+
