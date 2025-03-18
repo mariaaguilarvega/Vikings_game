@@ -8,7 +8,7 @@ from vikingsClasses import Viking, Saxon, War, Event, HealthBoostEvent
 
 def choose_warrior(army, player_name):
     """"Allow the player to select a warrior from their army"""
-    message = f"\n{player_name}, it's time for you to choose a warrior!"
+    message = f"{player_name}, it's time for you to choose a warrior!"
     options = [f"{type(warrior).__name__}: {warrior.name if warrior.name else ''} with {warrior.health} health and {warrior.strength} strength" for warrior in army]
     selected_index = UI.display_user_menu(options, message)
     return army[selected_index]

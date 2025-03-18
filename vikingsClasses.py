@@ -1,6 +1,6 @@
 import random
 import time
-import threading
+import keyboard
 
 
 #
@@ -110,47 +110,36 @@ class Event:
 #
 # HealthBoostEvent
 #
-class HealthBoostEvent(Event):
+class HealthBoostEvent():
+
     def __init__(self, player1, player2, vikingArmy, saxonArmy):
         self.player1 = player1
         self.player2 = player2
         self.vikingArmy = vikingArmy
         self.saxonArmy = saxonArmy
-
     def trigger(self):
-        print("\n!!! Special Event: Health Boost Challenge !!!")
+        print("\nSpecial Event: Health Boost Challenge !!!")
         print(f"{self.player1}, press 'x' | {self.player2}, press 'm'")
 
-        pressed_key = None
-        key_received = False  # variable to check if key is received
+        start_time = time.time()
 
-        def wait_for_keypress():
-            nonlocal pressed_key, key_received
-            pressed_key = input("Press your key quickly: ").strip()
-            key_received = True  #if a key is pressed then true
+        while time.time() - start_time < 3:
+            if keyboard.is_pressed('x') and self.vikingArmy:
+                chosen_viking = random.choice(self.vikingArmy)
+                chosen_viking.health += 10
+                print(f"\n{self.player1} wins the event! {chosen_viking.name} gains 10 health!")
+                time.sleep(3)
+                return
+            elif keyboard.is_pressed('m') and self.saxonArmy:
+                chosen_saxon = random.choice(self.saxonArmy)
+                chosen_saxon.health += 10
+                print(f"\n{self.player2} wins the event! {chosen_saxon.name} gains 10 health!")
+                time.sleep(3)
+                return
+            else:
+                pass
 
-        # new thread to handle user input
-        thread = threading.Thread(target=wait_for_keypress)
-        thread.start()
-        thread.join(timeout=5)  #Wait for 5 seconds to get the input
-
-        if not key_received:
-            # No one pressed the key
-            print("No one pressed the key on time!")
-            return  # Get out from the event
-
-        # Handle pressed key to check if it comes from player1 or 2 and if it is valid
-        if pressed_key == "x" and self.vikingArmy:
-            chosen_viking = random.choice(self.vikingArmy)
-            chosen_viking.health += 10
-            print(f"{self.player1} wins the event! {chosen_viking.name} gains 10 health!")
-            time.sleep(2)
-        elif pressed_key == "m" and self.saxonArmy:
-            chosen_saxon = random.choice(self.saxonArmy)
-            chosen_saxon.health += 10
-            print(f"{self.player2} wins the event! {chosen_saxon.name} gains 10 health!")
-            time.sleep(2)
-        else:
-            print("Invalid key pressed or no warriors available!")
-            time.sleep(1)
+        print("\nNo one pressed the key in time! The event is skipped.")
+        time.sleep(3)
+        return
 
