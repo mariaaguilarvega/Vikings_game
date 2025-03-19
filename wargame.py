@@ -1,7 +1,7 @@
 import random
 import time
 import os
-
+import pygame
 from ui import UI
 from vikingsClasses import Viking, Saxon, War, Event, HealthBoostEvent
 
@@ -29,6 +29,11 @@ def main():
         great_war.addSaxon(Saxon(f"Saxon-{i}", 100, random.randint(50, 100)))
 
     round = 1
+    pygame.mixer.init()
+    pygame.mixer.music.load('fight.mp3')
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(-1)
+
     while great_war.showStatus() == "Vikings and Saxons are still in the thick of battle.":
         UI.clear()
         print("\033[31m" + f"\n--- Round {round} ---" + "\033[0m")
@@ -56,6 +61,7 @@ def main():
 
         # Check if Saxons are dead
         if not great_war.saxonArmy:
+            pygame.mixer.music.stop()
             UI.display_message(f"{player1} and the Vikings army win the war!")
             break
 
@@ -72,6 +78,7 @@ def main():
 
         # Check if Vikings are dead
         if not great_war.vikingArmy:
+            pygame.mixer.music.stop()
             UI.display_message(f"{player2} and the Saxon army win the war!")
             break
 
