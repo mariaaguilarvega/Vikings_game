@@ -17,6 +17,18 @@ def choose_warrior(army, player_name):
 
 def main():
 
+    print(
+        "\n\n Two mighty leaders stand at the threshold of history: "
+        "the fearless Vikings, driven by honor and the call of Valhalla, "
+        "and the steadfast Saxons, determined to protect their homeland with unyielding courage. "
+        "\n\nPrepare to lead your army to victory! "
+        "First, you'll determine the size of your forces by entering the number of soldiers. Both armies will have the same. "
+        "Then, the battle begins—your strategy and the strength of your warriors will shape the outcome. But, stay tuned for special events, first come, first served!"
+        "\n\nWill you rise as a legendary leader, or will your name fade into oblivion?\n\n"
+    )
+
+    time.sleep(3)
+
     soldier_number = UI.ask_for_int("Enter the number of soldiers: ")
 
     player1 = input("Player 1, write your name (Vikings' leader): ")
