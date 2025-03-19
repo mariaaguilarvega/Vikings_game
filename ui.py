@@ -1,5 +1,6 @@
 import os
 import readchar
+import sys
 
 
 class UI():
@@ -20,24 +21,21 @@ class UI():
                 print("Please enter a valid number")
 
     @staticmethod
-    def display_user_menu(options, intro = ""):
-        """Display some options for the user to choose, and return the index of the option selected"""
+    def display_user_menu(options, intro=""):
         selected = 0
 
+        # Print the initial menu
+        print("\n" + intro + "\n")
+        for i, option in enumerate(options):
+            prefix = "→ " if i == selected else "  "
+            print(f"{prefix}{option}")
+
         while True:
-            UI.clear()
-
-            # display intro message
-            print("\n\n")
-            print(intro)
-            print("\n")
-
-            # display all available options
+            sys.stdout.write("\033[F" * len(options))  # Move cursor up to redraw only the menu
             for i, option in enumerate(options):
                 prefix = "→ " if i == selected else "  "
                 print(f"{prefix}{option}")
-            
-            # get user's choice
+
             key = readchar.readkey()
             if key == readchar.key.UP and selected > 0:
                 selected -= 1
@@ -45,13 +43,12 @@ class UI():
                 selected += 1
             elif key == readchar.key.ENTER:
                 break
-        
-        UI.clear()
+
         return selected
 
     @staticmethod
     def display_message(msg = ""):
         """Display a message, and wait for user confirmation"""
-        UI.display_user_menu(["Ok!"], msg)
+        UI.display_user_menu(["Game-over!"], msg)
 
 
