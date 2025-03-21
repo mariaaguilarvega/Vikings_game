@@ -6,12 +6,12 @@ battles = [
         #
         "battle_name": "Vikings vs. Saxons",
         "intro_text": "\n".join([
-            "\n\nTwo mighty leaders stand at the threshold of history: "
+            "Two mighty leaders stand at the threshold of history: "
             "the fearless Vikings, driven by honor and the call of Valhalla, "
             "and the steadfast Saxons, determined to protect their homeland with unyielding courage. "
             "\n\nPrepare to lead your army to victory! "
             "The battle begins —your strategy and the strength of your warriors will shape the outcome. But, stay tuned for special events, first come, first served!"
-            "\n\nWill you rise as a legendary leader, or will your name fade into oblivion?\n\n"
+            "\n\nWill you rise as a legendary leader, or will your name fade into oblivion?"
         ]),
         "army_1": {
             "army_name": "Vikings",
@@ -60,7 +60,10 @@ battles = [
         # 
         "battle_name": "Harry Potter vs. The Lord of the Rings",
         "intro_text": "\n".join([
-            "",
+            "Two legendary worlds collide!"
+            "\n\nOn one side, Harry Potter with its magic, creatures, and heroes." 
+            "\nOn the other, The Lord of the Rings, where ancient forces clash with mortal courage." 
+            "\n\nPrepare for a showdown that will leave the fate of both realms hanging in the balance."
         ]),
         "army_1": {
             "army_name": "Harry Potter",
@@ -97,7 +100,10 @@ battles = [
         # 
         "battle_name": "Futurama vs. The Simpsons",
         "intro_text": "\n".join([
-            "",
+            "The ultimate clash of animated titans is upon us! "
+            "\n\nOn one side, Futurama —a bold journey through time and space, where the future is as wild as its crew and every moment is a cosmic adventure. "
+            "\n\nOn the other, The Simpsons —a legendary family whose timeless humor and biting satire have carved their place in history. "
+            "\n\nBrace yourself for the epic showdown! ",
         ]),
         "army_1": {
             "army_name": "Futurama",
@@ -124,36 +130,6 @@ battles = [
                 },
                 {
                     "name": "Barney",
-                },
-            ]
-        }, 
-    },
-    {
-        #
-        # ABC vs. DEF
-        #
-        "battle_name": "ABC vs. DEF",
-        "intro_text": "\n".join([
-            "\n\nLorem ipsum: ",
-            "dolor sit amet.",
-        ]),
-        "army_1": {
-            "army_name": "ABC",
-            "warrior_list": [
-                {
-                    "name": "Alice_2",
-                    "health": 100,
-                    "strength": 70
-                },
-            ]
-        }, 
-        "army_2": {
-            "army_name": "DEF",
-            "warrior_list": [
-                {
-                    "name": "David_2",
-                    "health": 100,
-                    "strength": 70
                 },
             ]
         }, 

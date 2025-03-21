@@ -71,7 +71,7 @@ class War():
         self.round = 1
 
     def start(self):
-        UI.display_message(self.battle_data["intro_text"], "Let's go!")
+        UI.display_message(self.battle_data["intro_text"], "Let the battle begin!")
 
         while True:
             UI.clear()
