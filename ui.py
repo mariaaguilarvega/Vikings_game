@@ -12,6 +12,7 @@ class UI():
 
     @staticmethod
     def ask_for_int(msg):
+        """Ask the user for an integer, and return it"""
         while True:
             try:
                 response = int(input(msg))
@@ -22,6 +23,7 @@ class UI():
 
     @staticmethod
     def display_user_menu(options, intro=""):
+        """Display some options for the user to choose, and return the index of the option selected"""
         selected = 0
 
         # Print the initial menu
@@ -47,8 +49,9 @@ class UI():
         return selected
 
     @staticmethod
-    def display_message(msg = ""):
+    def display_message(msg = "", button_msg="Ok!"):
         """Display a message, and wait for user confirmation"""
-        UI.display_user_menu(["Game-over!"], msg)
+        UI.clear()
+        UI.display_user_menu([button_msg], msg)
 
 
