@@ -92,15 +92,15 @@ class War():
 
             # Player 1 turn
             self.play_turn(self.army_1, self.army_2)
-            has_finished = self.check_winner()
-            if has_finished:
-                return
+            winner = self.check_winner()
+            if winner:
+                return winner
 
             # Player 2 turn
             self.play_turn(self.army_2, self.army_1)
-            has_finished = self.check_winner()
-            if has_finished:
-                return
+            winner = self.check_winner()
+            if winner:
+                return winner
 
             # Increment the round number
             self.round += 1
@@ -117,13 +117,10 @@ class War():
 
     def check_winner(self):
         if not self.army_2.warriors:
-            UI.display_message(f"{self.army_1.army_name} have won the battle of the century!", "Game Over!")
             return 1
         elif not self.army_1.warriors:
-            UI.display_message(f"{self.army_2.army_name} have won the battle of the century!", "Game Over!")
             return 2
         else:
-            # print(f"{self.army_1.army_name} and {self.army_2.army_name} are still in the thick of battle.")
             return None
         
 

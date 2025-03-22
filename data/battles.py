@@ -77,7 +77,11 @@ battles = [
                 {
                     "name": "Ron",
                 },
-            ]
+            ],
+            "theme": {
+                "filename": "theme_harry_potter.mp3",
+                "start_at": 2.35
+            },
         }, 
         "army_2": {
             "army_name": "The Lord of the Rings",
@@ -91,7 +95,11 @@ battles = [
                 {
                     "name": "Legolas",
                 },
-            ]
+            ],
+            "theme": {
+                "filename": "theme_the_lord_of_the_rings.mp3",
+                "start_at": 2.29
+            },
         }, 
     },
     {
@@ -117,7 +125,11 @@ battles = [
                 {
                     "name": "Bender",
                 },
-            ]
+            ],
+            "theme": {
+                "filename": "theme_futurama.mp3",
+                "start_at": 0.00
+            },
         }, 
         "army_2": {
             "army_name": "The Simpsons",
@@ -131,7 +143,11 @@ battles = [
                 {
                     "name": "Barney",
                 },
-            ]
+            ],
+            "theme": {
+                "filename": "theme_the_simpsons.mp3",
+                "start_at": 0.09
+            }
         }, 
     },
 ]
